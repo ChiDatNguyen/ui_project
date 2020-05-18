@@ -31,7 +31,7 @@ export class HealthScreen extends Component{
             <View style={{flex:1, backgroundColor: 'white'}}>
             {/* View tren o giua */}
               <Image
-                source={require('.\\healimage\\layer3.png')}
+                source={require('.\\images\\healthimage\\layer3.png')}
                 style={styles.heartlogo}
                 />
             </View>
@@ -61,7 +61,7 @@ export class HealthScreen extends Component{
             {/* View duoi cot 1.1 */}
               <View style={styles.miniview}>
               <Image
-                source={require('.\\healimage\\step.png')}
+                source={require('.\\images\\healthimage\\step.png')}
                 style={styles.tinylogo}
                 />
               </View>
@@ -82,7 +82,7 @@ export class HealthScreen extends Component{
             {/* View duoi cot 1.2 */}
               <View style={styles.miniview}>
               <Image
-                source={require('.\\healimage\\images.png')}
+                source={require('.\\images\\healthimage\\images.png')}
                 style={styles.tinylogo}
                 />
               </View>
@@ -107,7 +107,7 @@ export class HealthScreen extends Component{
             {/* View duoi cot 2.1 */}
               <View style={styles.miniview}>
               <Image
-                source={require('.\\healimage\\layer4.png')}
+                source={require('.\\images\\healthimage\\layer4.png')}
                 style={styles.tinylogo}
                 />
               </View>
@@ -128,7 +128,7 @@ export class HealthScreen extends Component{
             {/* View duoi cot 2.2 */}
               <View style={styles.miniview}>
               <Image
-                source={require('.\\healimage\\service.png')}
+                source={require('.\\images\\healthimage\\service.png')}
                 style={styles.tinylogo}
                 />
               </View>
@@ -183,12 +183,6 @@ const styles = StyleSheet.create({
     flex:1, backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  rightminiview:{
-    flex:1, backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-
   },
   normalview:{
     flex:2, backgroundColor: 'white',
