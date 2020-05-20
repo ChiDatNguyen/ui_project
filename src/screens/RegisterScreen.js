@@ -9,11 +9,13 @@ import bgImage from 'C:/Users/Admin/Desktop/ui_project-master/src/images/wallpap
 import Logo from 'C:/Users/Admin/Desktop/ui_project-master/src/images/logo.png';
 import IconUser from 'C:/Users/Admin/Desktop/ui_project-master/src/images/username.png';
 import IconPass from 'C:/Users/Admin/Desktop/ui_project-master/src/images/password.png';
+import IconMail from 'C:/Users/Admin/Desktop/ui_project-master/src/images/email.png';
 
 const { width: WIDTH } = Dimensions.get('window')
 export function RegisterScreen({navigation}) {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [user, setUser] = useState('');
     submitRegister = (email,pass) => {
       // auth().createUserWithEmailAndPassword(email,pass).catch(function(error) {});
       alert(email);
@@ -23,11 +25,11 @@ export function RegisterScreen({navigation}) {
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
           <View style={styles.logoContainer}>
             <Image source={Logo} style={styles.logo} />
-            <Text style={styles.logoText}>REGISTER</Text>
+            <Text style={styles.logoText}>SIGN UP</Text>
           </View>
           
           <View style={styles.inputContainer}>
-          <Image source={IconUser} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} /> 
+            <Image source={IconUser} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} /> 
             <TextInput
               style={styles.input}
               placeholder={'Username'}
@@ -51,26 +53,24 @@ export function RegisterScreen({navigation}) {
             />
           </View>
 
-        <View style={styles.inputContainer} style={{ flexDirection: 'row' }}>
-          <TextInput
-            style={styles.inputRow}
-            placeholder={'Height'}
-            placeholderTextColor={'rgba(255,255,255,0.7)'}
-            underlineColorAndroid='transparent'
-          />
-          <TextInput
-            style={styles.inputRow}
-            placeholder={'Weight'}
-            placeholderTextColor={'rgba(255,255,255,0.7)'}
-            underlineColorAndroid='transparent'
-          />
-        </View>
+          <View style={styles.inputContainer}>
+          <Image source={IconMail} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIconEmail} />
+            <TextInput
+              style={styles.input}
+              placeholder={'Email'}
+              placeholderTextColor={'rgba(255,255,255,0.7)'}
+              underlineColorAndroid='transparent'
+              onChangeText={user => setUser(user)}
+              defaultValue={user}
+            />
+          </View>
+
         
         <View style={styles.inputContainer} style={{ flexDirection: 'row' }}>
           <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('home')}>
             <Text style={styles.text}>Register</Text>
           </TouchableOpacity>
         </View>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     height: 120
   },
   logoText: {
-    color: 'white',
+    color: 'black',
     fontSize: 20,
     fontWeight: '500',
     marginTop: 10,
@@ -134,14 +134,19 @@ const styles = StyleSheet.create({
   },
   inputIcon: {
     position: 'absolute',
-    top: -2,
-    left: 25
+    top: 6,
+    left: 30
+  },
+  inputIconEmail:{
+    position: 'absolute',
+    top: 10,
+    left: 32
   },
   inputContainer: {
     marginTop: 10
   },
   btnLogin: {
-    width: WIDTH - 220,
+    width: WIDTH - 270,
     height: 45,
     borderRadius: 25,
     backgroundColor: '#432577',

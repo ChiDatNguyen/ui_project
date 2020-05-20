@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
       height: 120
     },
     logoText:{
-      color: 'white',
+      color: 'black',
       fontSize: 20,
       fontWeight: '500',
       marginTop: 10,
@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
     },
     inputIcon:{
       position: 'absolute',
-      top: -2,
-      left: 25
+      top: 6,
+      left: 30
     },
     inputContainer:{
       marginTop: 10
