@@ -70,7 +70,7 @@ export function RegisterScreen({navigation}) {
           <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
             <Text style={styles.text}>Login</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnLogin} onPress={() => this.submitRegister(email, pass)}>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
             <Text style={styles.text}>Register</Text>
           </TouchableOpacity>
         </View>
