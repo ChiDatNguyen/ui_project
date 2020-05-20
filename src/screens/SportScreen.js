@@ -8,15 +8,16 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  Button,
+  TouchableOpacity
 } from 'react-native';
-import background from '../assets/Rectangle_1.png';
+
 import chart from '../assets/chart2.png'
 
 export function SportScreen() {
   return (
     <ImageBackground style={styles.container}>
       <View>
-        <Text style={styles.title}>Sport</Text>
       </View>
       <Sport />
     </ImageBackground>
@@ -67,9 +68,9 @@ class Sport extends Component {
             </View>
           </View>
         {/* end3 */}
-          <View style={styles.box4}>
-                <Text style={styles.title1}>Stop</Text>
-          </View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Stop</Text>
+        </TouchableOpacity>
           {/* end4 */}
       </ScrollView>
     );
@@ -120,12 +121,13 @@ image : {
 
 box1 :{
     color :'white',
+    marginTop : 10
         
 },
 box1__line1 : {
     backgroundColor :'#7AC5CD',
     alignItems: 'center',
-    paddingVertical : 15,
+    paddingVertical : 8,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     
@@ -133,7 +135,7 @@ box1__line1 : {
 box1__line2 : {
     backgroundColor : '#00868B',
     alignItems: 'center',
-    paddingVertical : 15,
+    paddingVertical : 20,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
 
@@ -145,7 +147,7 @@ box2 : {
 box2__line1 : {
     alignItems :'center',
     backgroundColor : '#698B22',
-    paddingVertical : 15,
+    paddingVertical : 8,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5
 },
@@ -186,7 +188,7 @@ box3 :{
 box3__line1 : {
     backgroundColor :'#CDC673',
     alignItems: 'center',
-    paddingVertical : 15,
+    paddingVertical : 8,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5
 },
@@ -197,12 +199,11 @@ box3__line2 : {
     alignItems : 'center',
     
 },
-box4 :{
+button :{
     width: '50%',
     alignItems : 'center',
-    alignContent :'center',
     marginLeft: 95,
-    paddingVertical : 15,
+    paddingVertical : 10,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     borderBottomLeftRadius: 5,
@@ -210,6 +211,9 @@ box4 :{
     backgroundColor : '#8B1A1A',
     marginTop : 10
     
+},
+buttonText : {
+  fontSize : 20,
+  color: '#ffffff',
 }
-
 });
