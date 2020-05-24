@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import chart from '../../images/chart2.png'
+import chart from '../../images/sportscreen/chart2.png'
 
 export function SportScreen() {
   return (
