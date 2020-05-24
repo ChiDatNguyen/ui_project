@@ -38,7 +38,7 @@ class ListActivity extends React.Component{
     //         <View style={style.activelist}>
     //             <Image 
     //                 style={style.imageactive}
-    //                 source={require('./assets/run_icon.png')}
+    //                 source={require('../../images/assets/run_icon.png')}
     //                 style={{width: 40, height: 40}} 
     //             />
     //             <View style={style.active}>
@@ -64,7 +64,7 @@ class ListActivity extends React.Component{
                     <View style={{ flexDirection:'row-reverse'}}>
                         <Text>Thêm mới</Text>
                         <Image 
-                            source={require('./assets/add.png')} 
+                            source={require('../../images/assets/add.png')} 
                             style={{width: 20, height: 20}}
                         />
                     </View>
@@ -72,7 +72,7 @@ class ListActivity extends React.Component{
                        <View style={style.activelist}>
                             <Image 
                                 style={style.imageactive}
-                                source={require('./assets/run_icon.png')}
+                                source={require('../../images/assets/run_icon.png')}
                                 style={{width: 40, height: 40}} 
                             />
                             <View style={style.active}>
@@ -90,7 +90,7 @@ class ListActivity extends React.Component{
                         <View style={style.activelist}>
                             <Image 
                                 style={style.imageactive}
-                                source={require('./assets/gym_icon.png')}
+                                source={require('../../images/assets/gym_icon.png')}
                                 style={{width: 40, height: 40}} 
                             />
                             <View style={style.active}>
