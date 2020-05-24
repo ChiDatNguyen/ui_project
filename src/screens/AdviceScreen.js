@@ -8,11 +8,11 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import Rectangle_1 from '../images/Rectangle_1.png';
-import icon_music from '../images/icon_music.png';
-import icon_run from '../images/icon_run.png';
-import traning from '../images/training.png';
-import nutrious from '../images/nutrious.png';
+import Rectangle_1 from '../../images/advice/Rectangle_1.png';
+import icon_music from '../../images/advice/icon_music.png';
+import icon_run from '../../images/advice/icon_run.png';
+import traning from '../../images/advice/training.png';
+import nutrious from '../../images/advice/nutrious.png';
 
 export function AdviceScreen() {
   return (
