@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     marginLeft:0,
   },
   normalview:{
-    flex:2,
+    flex:3,
     justifyContent: 'center',
     alignItems: 'center',
   },
