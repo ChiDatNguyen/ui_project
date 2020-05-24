@@ -19,8 +19,8 @@ function App() {
           }
         }}
       >
-        <Stack.Screen name="login" component={LoginScreen} options={{title: 'tLogin'}}/>
-        <Stack.Screen name="register" component={RegisterScreen} />
+        <Stack.Screen name="login" component={LoginScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="register" component={RegisterScreen} options={{headerShown: false}}/>
         <Stack.Screen name="home" component={Home} options={{title:'CareApp'}}/>
       </Stack.Navigator>
     </NavigationContainer>

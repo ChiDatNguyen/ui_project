@@ -17,9 +17,9 @@ import nutrious from '../../images/advice/nutrious.png';
 export function AdviceScreen() {
   return (
     <View>
-      <View>
+      {/* <View>
         <Text style={styles.title}>Advices</Text>
-      </View>
+      </View> */}
       <Advice_main />
     </View>
   );
