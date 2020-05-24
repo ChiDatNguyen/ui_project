@@ -7,12 +7,10 @@ import {
   ImageBackground,
   Image,
   ScrollView,
-  Dimensions,
-  Button,
   TouchableOpacity
 } from 'react-native';
 
-import chart from '../assets/chart2.png'
+import chart from '../../images/chart2.png'
 
 export function SportScreen() {
   return (
