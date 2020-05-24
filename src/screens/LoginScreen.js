@@ -54,7 +54,7 @@ export function LoginScreen({ navigation }) {
           <Text style = {styles.text}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('register')}>
-          <Text style={styles.text}>Sign Up</Text>
+          <Text style={styles.text}>Register</Text>
       </TouchableOpacity>
     </ImageBackground>
 

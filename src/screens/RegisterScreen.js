@@ -25,7 +25,7 @@ export function RegisterScreen({navigation}) {
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
           <View style={styles.logoContainer}>
             <Image source={Logo} style={styles.logo} />
-            <Text style={styles.logoText}>SIGN UP</Text>
+            <Text style={styles.logoText}>Register</Text>
           </View>
           
           <View style={styles.inputContainer}>
@@ -67,11 +67,11 @@ export function RegisterScreen({navigation}) {
 
         
         <View style={styles.inputContainer} style={{ flexDirection: 'row' }}>
-          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
-            <Text style={styles.text}>Login</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('home')}>
             <Text style={styles.text}>Register</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
+            <Text style={styles.text}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
