@@ -6,10 +6,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Component} from 'react';
 
-import bgImage from 'C:/Users/Admin/Documents/GitHub/ui_project/images/wallpaper.png';
-import Logo from 'C:/Users/Admin/Documents/GitHub/ui_project/images/logo.png';
-import IconUser from 'C:/Users/Admin/Documents/GitHub/ui_project/images/username.png';
-import IconPass from 'C:/Users/Admin/Documents/GitHub/ui_project/images/password.png';
+import bgImage from '../../images/Login_Register/wallpaper.png';
+import Logo from '../../images/Login_Register/logo.png';
+import IconUser from '../../images/Login_Register/username.png';
+import IconPass from '../../images/Login_Register/password.png';
 
 
 const { width: WIDTH} = Dimensions.get('window')
