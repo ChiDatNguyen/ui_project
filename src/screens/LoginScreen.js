@@ -20,7 +20,7 @@ export function LoginScreen({ navigation }) {
     <ImageBackground source = {bgImage} style = {styles.backgroundContainer}>
       <View style = {styles.logoContainer}>
           <Image source = {Logo} style = {styles.logo}/>
-          <Text style = {styles.logoText}>CARE APP</Text>
+          <Text style = {styles.logoText}>HEALTH APP</Text>
       </View>
 
       <View style = {styles.inputContainer}>
