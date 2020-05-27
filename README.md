@@ -5,7 +5,3 @@ BÀI TẬP LỚN UI
 2. xóa node_modules
 3. cmd: npm install
 4. tab cmd khác: npx react-native run-android
-
-Các thư viện cần cài cho màn hình schedule
-npm install react-native-elements
-npm install --save react-native-vector-icons
