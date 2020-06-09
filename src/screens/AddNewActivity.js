@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ScrollView, Text, View, Image, AppRegistry, Button, Navigator, StyleSheet, TouchableOpacity } from 'react-native';
+import { Platform, ScrollView, Text, View, Image, AppRegistry, Button, Navigator, StyleSheet, TouchableOpacity } from 'react-native';
 import { CheckBox, Input } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export class AddNewActivity extends React.Component {
     constructor(props) {
@@ -16,13 +16,56 @@ export class AddNewActivity extends React.Component {
             T7: false,
             CN: false,
             activity: "",
-            time: '20:00'
+            time: '00:00',
+            date: new Date(1598051730000),
+            more:'time',
+            show:false
+            
         };
     }
-    xacnhan() {
-        this.props.navigation.goBack();
+    onChange =(event, date) =>{
+        date = date||this.state.state;
+        let hours ;
+        let minute;
+        if(date.getHours().toString().length==1){
+            hours = "0"+date.getHours();
+        }
+        else{
+            hours = date.getHours();
+        }
+        if(date.getMinutes().toString().length==1){
+            minute = "0"+date.getMinutes();
+        }
+        else{
+            minute = date.getMinutes();
+        }
+        let selectedTime = hours +":" + minute;
+        console.log(selectedTime);
+        this.setState({
+            show: Platform.OS === 'ios'?true:false,
+            date,
+            time:selectedTime
+        });
+        // selectedTime => this.setState({time : selectedTime})
+        console.log(this.state.time)
+    }
+    show = mode =>{
+        this.setState({
+            show:true,
+            mode    
+        });
+    }
+    datepicker=()=>{
+        this.show('date');
+    }
+    timepicker=()=>{
+        this.show('time');
     }
     render() {
+        const show = this.state.show;
+        const date =this.state.date;
+        const mode = this.state.more;
+        console.log(date);
         return (
             <ScrollView>
                 <View>
@@ -95,17 +138,27 @@ export class AddNewActivity extends React.Component {
                         leftIcon={
                             <Image source={require('../../images/schedule/run_icon.png')} style={{ width: 20, height: 20 }} />
                         }
-                        onChangeText={value => this.setState({ time: value })}
+                        onFocus = {this.timepicker}
+                        value = {this.state.time}
                     />
+                    {
+                        show &&(
+                        <DateTimePicker 
+                        value = {date}
+                        mode = {mode}
+                        is24Hour = {true}
+                        display = {'default'}
+                        onChange = {this.onChange}
+                        />
+                        )}
                 </View>
                 <View>
                     <Button
                         title="Xác Nhận"
                         onPress={() => {
                             this.props.navigation.navigate('list')
+                            }
                         }
-                        }
-
                     />
                 </View>
             </ScrollView>
