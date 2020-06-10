@@ -23,6 +23,31 @@ export class AddNewActivity extends React.Component {
             
         };
     }
+    checkThu = () =>{
+        let checkedThu = "";
+        if(this.state.T2){
+            checkedThu += "T2  ";
+        }
+        if(this.state.T3){
+            checkedThu += "T3  ";
+        }
+        if(this.state.T4){
+            checkedThu += "T4  ";
+        }
+        if(this.state.T5){
+            checkedThu += "T5  ";
+        }
+        if(this.state.T6){
+            checkedThu += "T6  ";
+        }
+        if(this.state.T7){
+            checkedThu += "T7  ";
+        }
+        if(this.state.CN){
+            checkedThu += "CN  ";
+        }
+        return checkedThu.substring(0,checkedThu.length-2);  
+    }
     onChange =(event, date) =>{
         date = date||this.state.state;
         let hours ;
@@ -40,14 +65,13 @@ export class AddNewActivity extends React.Component {
             minute = date.getMinutes();
         }
         let selectedTime = hours +":" + minute;
-        console.log(selectedTime);
+        // console.log(selectedTime);
         this.setState({
             show: Platform.OS === 'ios'?true:false,
             date,
             time:selectedTime
         });
-        // selectedTime => this.setState({time : selectedTime})
-        console.log(this.state.time)
+        // console.log(this.state.time)
     }
     show = mode =>{
         this.setState({
@@ -61,20 +85,39 @@ export class AddNewActivity extends React.Component {
     timepicker=()=>{
         this.show('time');
     }
+    checkBackgroundActivity = (activity) =>{
+        if(activity == "Running"){
+            return require('../../images/schedule/run_icon.png');
+        }
+        if(activity == "Gym"){
+            return require('../../images/schedule/gym_icon.png');
+        }
+        if(activity == "Sport"){
+            return require('../../images/schedule/sport_icon.png');
+        }
+    }
     render() {
+        // console.log(this.props)
         const show = this.state.show;
         const date =this.state.date;
         const mode = this.state.more;
-        console.log(date);
+        let dataActivity = {
+            stt:this.props.route.params.stt+1,
+            activity : this.state.activity,
+            icon_activity : this.checkBackgroundActivity(this.state.activity),
+            time : this.state.time,
+            thu : this.checkThu()
+        };
         return (
             <ScrollView>
-                <View>
+                <View style = {{color:'black'}}>
                     <Text>Hoạt động</Text>
                     <RNPickerSelect
                         onValueChange={value => this.setState({ activity: value })}
                         items={[
-                            { label: 'Sport', value: 'football' },
-                            { label: 'Gym', value: 'baseball' }
+                            { label: 'Sport', value: 'Sport' },
+                            { label: 'Gym', value: 'Gym' },
+                            { label: 'Run', value: 'Running' }
                         ]}
                     />
 
@@ -156,7 +199,8 @@ export class AddNewActivity extends React.Component {
                     <Button
                         title="Xác Nhận"
                         onPress={() => {
-                            this.props.navigation.navigate('list')
+                            this.props.route.params.parent.pushDataActivity(dataActivity);
+                            this.props.navigation.navigate('list',dataActivity);
                             }
                         }
                     />
