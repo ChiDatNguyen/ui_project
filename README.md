@@ -9,3 +9,9 @@ BÀI TẬP LỚN UI
 Các thư viện cần cài cho màn hình schedule
 npm install react-native-elements
 npm install --save react-native-vector-icons
+
+Các thư viện cần cài để sử dụng firebase:
+npm install firebase
+
+Email firebase: tkgdnd2020@gmail.com
+Password: tkgdnd***
