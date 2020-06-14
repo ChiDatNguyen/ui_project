@@ -15,3 +15,4 @@ npm install firebase
 
 Email firebase: tkgdnd2020@gmail.com
 Password: tkgdnd***
+Email và Password để đăng nhập ứng dụng: test@gmail.com - 123456
