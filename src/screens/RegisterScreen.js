@@ -27,9 +27,9 @@ export function RegisterScreen({navigation}) {
             <Image source={Logo} style={styles.logo} />
             <Text style={styles.logoText}>Register</Text>
           </View>
-          
+
           <View style={styles.inputContainer}>
-            <Image source={IconUser} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} /> 
+            <Image source={IconUser} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} />
             <TextInput
               style={styles.input}
               placeholder={'Username'}
@@ -39,7 +39,7 @@ export function RegisterScreen({navigation}) {
               defaultValue={email}
             />
           </View>
-          
+
           <View style={styles.inputContainer}>
             <Image source={IconPass} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} />
             <TextInput
@@ -65,7 +65,7 @@ export function RegisterScreen({navigation}) {
             />
           </View>
 
-        
+
         <View style={styles.inputContainer} style={{ flexDirection: 'row' }}>
           <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('home')}>
             <Text style={styles.text}>Register</Text>
