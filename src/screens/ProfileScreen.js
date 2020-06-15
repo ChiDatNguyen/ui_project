@@ -1,7 +1,47 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity, Alert } from "react-native";
+import { firebaseApp } from '../../Component/FirebaseConfig.js';
 
-export function ProfileScreen() {
+const { width: WIDTH} = Dimensions.get('window')
+export class ProfileScreen extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  Logout() {
+    firebaseApp.auth().signOut()
+      .then(() => {
+        Alert.alert(
+          'Alert Title',
+          'Are you sure you want to log out?',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+            },
+            { text: 'Logout', onPress: () => this.props.navigation.navigate('login') }
+          ],
+          { cancelable: false }
+        )
+      })
+      .catch(function (error) {
+        Alert.alert(
+          'Alert Title',
+          'Logout failed!',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel'
+            },
+            { text: 'OK', onPress: () => console.log('OK Pressed') }
+          ],
+          { cancelable: false }
+        )
+      })
+  }
+
+  render(){
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -157,9 +197,14 @@ export function ProfileScreen() {
               </View>
             </View>
           </View>
+
+          <TouchableOpacity style={styles.btnLogout} onPress={() => { this.Logout() }}>
+            <Text style={styles.textButton}>Logout</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     );
+  }
 }
 const styles = StyleSheet.create({
   container: {
@@ -280,5 +325,19 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginTop: 3,
     marginRight: 20
+  },
+  btnLogout: {
+    width: WIDTH - 220,
+    left: 120,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: '#432577',
+    justifyContent: 'center',
+    marginBottom: 18
+  },
+  textButton:{
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: 16,
+    textAlign: 'center'
   }
 });
