@@ -11,13 +11,13 @@ import {
 } from 'react-native';
 
 import chart from '../../images/sportscreen/chart2.png'
+import stopWatch from '../../images/sportscreen/unnamed.gif'
 
 export function SportScreen() {
   return (
     <ImageBackground style={styles.container}>
-      <View>
-      </View>
       <Sport />
+      
     </ImageBackground>
   );
 }
@@ -31,9 +31,15 @@ class Sport extends Component {
                 <Text  style={styles.title1}>Duration</Text>
             </View>
             <View style={styles.box1__line2}>
-                <Text style={styles.title1}>01:00:00:00</Text>
+            </View>
+            <View style={styles.box1__line3}>
+                {/* <View style={styles.box1__line3__stopWatch}>
+                <Text style={styles.title1}>01:00:00</Text>
+                </View> */}
+                <Image  source={stopWatch} style={styles.stopWatch}/>
             </View>
           </View>
+          
         {/* end1 */}
           <View style={styles.box2}>
             <View style={styles.box2__line1}>
@@ -79,9 +85,13 @@ var styles = StyleSheet.create({
 container : {
      marginHorizontal: 20,
      flex: 1,
-     fontSize : 40  
+     fontSize : 40, 
+     marginTop: 20
 },
-
+stopWatch : {
+    height: 250,
+    width :250
+},
 title : {
     fontSize: 45,
     margin: 25,
@@ -91,7 +101,7 @@ title : {
 title1 : {
   fontSize: 25,
   color: '#ffffff',
-  marginLeft :10
+  
 
 },
 title2 : {
@@ -130,14 +140,24 @@ box1__line1 : {
     borderTopRightRadius: 5,
     
 },
-box1__line2 : {
-    backgroundColor : '#00868B',
+box1__line3 : {
+    // paddingVertical : 20,
+    backgroundColor : '#fff',
     alignItems: 'center',
-    paddingVertical : 20,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-
 },
+box1__line3__stopWatch : {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height : 150,
+  width: 150,
+  borderRadius : 150,
+  borderWidth: 10, 
+  borderColor : '#DCE5F1',
+  
+},
+
 
 box2 : {
     marginTop : 10
@@ -191,10 +211,11 @@ box3__line1 : {
     borderTopRightRadius: 5
 },
 box3__line2 : {
-    height: 150,
-    width: '100%',
-    backgroundColor : '#8B864E',  
-    alignItems : 'center',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: 175,
+  backgroundColor :'#8B864E',
+
     
 },
 button :{
