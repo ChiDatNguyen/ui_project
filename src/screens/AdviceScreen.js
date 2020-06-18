@@ -43,7 +43,7 @@ class Advice_main extends Component {
             <Article_3 />
             <Article_4 />
             <Article_5 />
-            <Article_2 />
+            <Article_6 />
           </View>
         </View>
       </ScrollView>
@@ -137,6 +137,22 @@ class Article_5 extends Component {
           <Text style={styles.name_tag}>Improve Your LifeStyle</Text>
         </View>
         <Image source={LifeStyle} style={styles.icon2} />
+      </TouchableOpacity>
+    );
+  }
+}
+
+class Article_6 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    return (
+      <TouchableOpacity style={styles.list_child}>
+        <View style={{height: 200, width: 350}}>
+          <Text> </Text>
+        </View>
       </TouchableOpacity>
     );
   }
