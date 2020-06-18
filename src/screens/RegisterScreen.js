@@ -21,6 +21,7 @@ export class RegisterScreen extends Component {
       email: '',
       password: ''
     }
+    
   }
   Regis(){
     firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -38,12 +39,16 @@ export class RegisterScreen extends Component {
         ],
         { cancelable: false }
       )
-      this.setState({
-        username:'',
-        email:'',
-        password:''
-      });
       
+      firebaseApp.database().ref('user/'+firebaseApp.auth().currentUser.uid).set({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        age: '20',
+        weight: '60 kg',
+        height: '170 cm',
+        bloodType: 'O'
+      })
     })
     .catch(function (error) {
       // Alert.alert(
@@ -65,6 +70,7 @@ export class RegisterScreen extends Component {
   }
   
   render() {
+    
     return (
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
           <View style={styles.logoContainer}>

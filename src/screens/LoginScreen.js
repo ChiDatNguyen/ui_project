@@ -39,7 +39,6 @@ export class LoginScreen extends Component {
         { cancelable: false }
       )
       this.setState({
-        username:'',
         email:'',
         password:''
       });
@@ -59,14 +58,6 @@ export class LoginScreen extends Component {
         { cancelable: false }
       )
     });
-    firebaseApp.database().ref('user/'+firebaseApp.auth().currentUser.uid).set({
-      email: this.state.email,
-      password: this.state.password,
-      age: '20',
-      weight: '60 kg',
-      height: '170 cm',
-      bloodType: 'O'
-    })
   }
 
   render(){

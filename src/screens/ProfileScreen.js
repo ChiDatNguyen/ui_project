@@ -7,29 +7,24 @@ export class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username:'',
       email:'',
       age:'',
       bloodtype:'',
       height:'',
       weight:''
     }
+    firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).once('value').then(snapshot => {this.setState({ age:snapshot.val().age,
+      weight:snapshot.val().weight,
+      height:snapshot.val().height,
+      bloodtype:snapshot.val().bloodType,
+      email:snapshot.val().email,
+      username:snapshot.val().username})});
   }
   Logout() {
     firebaseApp.auth().signOut()
       .then(() => {
-        Alert.alert(
-          'Alert Title',
-          'Are you sure you want to log out?',
-          [
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel'
-            },
-            { text: 'Logout', onPress: () => this.props.navigation.navigate('login') }
-          ],
-          { cancelable: false }
-        )
+        this.props.navigation.navigate('login')
       })
       .catch(function (error) {
         Alert.alert(
@@ -50,13 +45,7 @@ export class ProfileScreen extends React.Component {
   }
   
   render(){
-    firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).once('value').then(snapshot => {this.setState({ age:snapshot.val().age,
-                                                                                                                            weight:snapshot.val().weight,
-                                                                                                                            height:snapshot.val().height,
-                                                                                                                            bloodtype:snapshot.val().bloodType,
-                                                                                                                            email:snapshot.val().email}) });
     return (
-      
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -75,7 +64,7 @@ export class ProfileScreen extends React.Component {
 
           <View style={styles.infoContainer}>
             <Text style={[styles.text, {fontWeight: '200', fontSize: 36}]}>
-              Tony Stark
+              {this.state.username}
             </Text>
             <Text style={[styles.text, {color: '#AEB5BC', fontSize: 14}]}>
               CEO of Stark Industries
