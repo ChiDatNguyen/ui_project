@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ScrollView, Text, View, Image, AppRegistry, Button, Navigator, StyleSheet, TouchableOpacity } from 'react-native';
+import { Platform, ScrollView, Text, View, Image, AppRegistry, Button, Navigator, StyleSheet, TouchableOpacity } from 'react-native';
 import { CheckBox, Input } from 'react-native-elements';
 import RNPickerSelect from 'react-native-picker-select';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export class AddNewActivity extends React.Component {
     constructor(props) {
@@ -16,22 +16,108 @@ export class AddNewActivity extends React.Component {
             T7: false,
             CN: false,
             activity: "",
-            time: '20:00'
+            time: '00:00',
+            date: new Date(1598051730000),
+            more:'time',
+            show:false
+            
         };
     }
-    xacnhan() {
-        this.props.navigation.goBack();
+    checkThu = () =>{
+        let checkedThu = "";
+        if(this.state.T2){
+            checkedThu += "T2  ";
+        }
+        if(this.state.T3){
+            checkedThu += "T3  ";
+        }
+        if(this.state.T4){
+            checkedThu += "T4  ";
+        }
+        if(this.state.T5){
+            checkedThu += "T5  ";
+        }
+        if(this.state.T6){
+            checkedThu += "T6  ";
+        }
+        if(this.state.T7){
+            checkedThu += "T7  ";
+        }
+        if(this.state.CN){
+            checkedThu += "CN  ";
+        }
+        return checkedThu.substring(0,checkedThu.length-2);  
+    }
+    onChange =(event, date) =>{
+        date = date||this.state.state;
+        let hours ;
+        let minute;
+        if(date.getHours().toString().length==1){
+            hours = "0"+date.getHours();
+        }
+        else{
+            hours = date.getHours();
+        }
+        if(date.getMinutes().toString().length==1){
+            minute = "0"+date.getMinutes();
+        }
+        else{
+            minute = date.getMinutes();
+        }
+        let selectedTime = hours +":" + minute;
+        // console.log(selectedTime);
+        this.setState({
+            show: Platform.OS === 'ios'?true:false,
+            date,
+            time:selectedTime
+        });
+        // console.log(this.state.time)
+    }
+    show = mode =>{
+        this.setState({
+            show:true,
+            mode    
+        });
+    }
+    datepicker=()=>{
+        this.show('date');
+    }
+    timepicker=()=>{
+        this.show('time');
+    }
+    checkBackgroundActivity = (activity) =>{
+        if(activity == "Running"){
+            return require('../../images/schedule/run_icon.png');
+        }
+        if(activity == "Gym"){
+            return require('../../images/schedule/gym_icon.png');
+        }
+        if(activity == "Sport"){
+            return require('../../images/schedule/sport_icon.png');
+        }
     }
     render() {
+        // console.log(this.props)
+        const show = this.state.show;
+        const date =this.state.date;
+        const mode = this.state.more;
+        let dataActivity = {
+            stt:this.props.route.params.stt+1,
+            activity : this.state.activity,
+            icon_activity : this.checkBackgroundActivity(this.state.activity),
+            time : this.state.time,
+            thu : this.checkThu()
+        };
         return (
             <ScrollView>
-                <View>
+                <View style = {{color:'black'}}>
                     <Text>Hoạt động</Text>
                     <RNPickerSelect
                         onValueChange={value => this.setState({ activity: value })}
                         items={[
-                            { label: 'Sport', value: 'football' },
-                            { label: 'Gym', value: 'baseball' }
+                            { label: 'Sport', value: 'Sport' },
+                            { label: 'Gym', value: 'Gym' },
+                            { label: 'Run', value: 'Running' }
                         ]}
                     />
 
@@ -95,17 +181,28 @@ export class AddNewActivity extends React.Component {
                         leftIcon={
                             <Image source={require('../../images/schedule/run_icon.png')} style={{ width: 20, height: 20 }} />
                         }
-                        onChangeText={value => this.setState({ time: value })}
+                        onFocus = {this.timepicker}
+                        value = {this.state.time}
                     />
+                    {
+                        show &&(
+                        <DateTimePicker 
+                        value = {date}
+                        mode = {mode}
+                        is24Hour = {true}
+                        display = {'default'}
+                        onChange = {this.onChange}
+                        />
+                        )}
                 </View>
                 <View>
                     <Button
                         title="Xác Nhận"
                         onPress={() => {
-                            this.props.navigation.navigate('list')
+                            this.props.route.params.parent.pushDataActivity(dataActivity);
+                            this.props.navigation.navigate('list',dataActivity);
+                            }
                         }
-                        }
-
                     />
                 </View>
             </ScrollView>
