@@ -9,13 +9,22 @@ export class Screen2 extends React.Component {
     return(
       <Fragment>
 
-        <View style={{justifyContent: 'center',flexDirection: 'row-reverse', alignItems: 'center', marginRight: 320, marginLeft: 10, marginTop:10, height: 30, borderRadius:10}}>
+        <View style={{justifyContent: 'center',flexDirection: 'row', backgroundColor: 'gray',alignItems: 'center', marginLeft: 290, marginTop:10, width:90, height: 30, borderRadius:20}}>
+
+          <View style = {{width:60, height:30, justifyContent: 'center', alignItems: 'center',}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('s1')}>
+            <Text> Spec
+            </Text>
+          </TouchableOpacity>
+          </View>
+          <View>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('s1')}>
             <Image
               source={require('../../images/healthimage/charticon.png')}
               style={{width:30, height:30}}
             />
           </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.container}>
           {/* View container */}
@@ -217,16 +226,11 @@ const styles = StyleSheet.create({
   text2:{
     marginTop: 10,
     textAlign: 'center',
-    fontSize:25,
+    fontSize:20,
     fontWeight: 'bold',
     color:'rgb(21, 67, 96)'
   },
-  text3:{
-    fontSize:15,
-    marginTop: 10,
-    textAlign: 'center',
-    color: 'rgb(236, 112, 99)'
-  },
+  
   chart:{
     marginLeft:30,
     marginRight:30,

@@ -32,13 +32,22 @@ class Screen1 extends Component{
 <Fragment>
       <ScrollView>
 
-        <View style={{justifyContent: 'center',flexDirection: 'row-reverse', alignItems: 'center', marginRight: 320, marginLeft: 10, marginTop:10, height: 30, borderRadius:10}}>
+        <View style={{justifyContent: 'center',flexDirection: 'row', backgroundColor: 'gray',width: 90,alignItems: 'center', marginTop:10, marginLeft:290, height: 30, borderRadius:20}}>
+          <View >
           <TouchableOpacity onPress={() => this.props.navigation.navigate('s2')}>
-          <Image
-            source={require('../../images/healthimage/eva.png')}
-            style={{width:30, height:30}}
-          />
+            <Image
+              source={require('../../images/healthimage/eva.png')}
+              style={{width:30, height:30}}
+              />
           </TouchableOpacity>
+          </View>
+
+          <View style = {{ width:60, height:30, justifyContent: 'center',borderRadius:10, alignItems: 'center',}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('s2')}>
+            <Text>Evaluate</Text>
+          </TouchableOpacity>
+          </View>
+
         </View>
 
         <View style={styles.container}>
