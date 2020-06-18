@@ -43,23 +43,25 @@ export class RegisterScreen extends Component {
         email:'',
         password:''
       });
+      
     })
     .catch(function (error) {
-      Alert.alert(
-        'Alert Title',
-        'Register failed!',
-        'Password must be at least 6 characters'
-        [
-          {
-            text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
-            style: 'cancel'
-          },
-          { text: 'OK', onPress: () => console.log('OK Pressed') }
-        ],
-        { cancelable: false }
-      )
+      // Alert.alert(
+      //   'Alert Title',
+      //   'Register failed!',
+      //   'Password must be at least 6 characters'
+      //   [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.log('Cancel Pressed'),
+      //       style: 'cancel'
+      //     },
+      //     { text: 'OK', onPress: () => console.log('OK Pressed') }
+      //   ],
+      //   { cancelable: false }
+      // )
     });
+    
   }
   
   render() {

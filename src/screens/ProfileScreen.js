@@ -6,6 +6,13 @@ const { width: WIDTH} = Dimensions.get('window')
 export class ProfileScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email:'',
+      age:'',
+      bloodtype:'',
+      height:'',
+      weight:''
+    }
   }
   Logout() {
     firebaseApp.auth().signOut()
@@ -39,10 +46,17 @@ export class ProfileScreen extends React.Component {
           { cancelable: false }
         )
       })
+    
   }
-
+  
   render(){
+    firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).once('value').then(snapshot => {this.setState({ age:snapshot.val().age,
+                                                                                                                            weight:snapshot.val().weight,
+                                                                                                                            height:snapshot.val().height,
+                                                                                                                            bloodtype:snapshot.val().bloodType,
+                                                                                                                            email:snapshot.val().email}) });
     return (
+      
       <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -70,7 +84,7 @@ export class ProfileScreen extends React.Component {
 
           <View style={styles.statsContainer}>
             <View style={styles.statsBox}>
-              <Text style={[styles.text, {fontSize: 24}]}>50</Text>
+    <Text style={[styles.text, {fontSize: 24}]}>{this.state.age}</Text>
               <Text style={[styles.text, styles.subText]}>Age</Text>
             </View>
             <View
@@ -82,11 +96,11 @@ export class ProfileScreen extends React.Component {
                   borderRightWidth: 1,
                 },
               ]}>
-              <Text style={[styles.text, {fontSize: 24}]}>52 kg</Text>
+              <Text style={[styles.text, {fontSize: 24}]}>{this.state.weight}</Text>
               <Text style={[styles.text, styles.subText]}>Weight</Text>
             </View>
             <View style={styles.statsBox}>
-              <Text style={[styles.text, {fontSize: 24}]}>184 cm</Text>
+            <Text style={[styles.text, {fontSize: 24}]}>{this.state.height}</Text>
               <Text style={[styles.text, styles.subText]}>Height</Text>
             </View>
             <View
@@ -98,7 +112,7 @@ export class ProfileScreen extends React.Component {
                   borderRightWidth: 1,
                 },
               ]}>
-              <Text style={[styles.text, { fontSize: 24 }]}>A</Text>
+              <Text style={[styles.text, { fontSize: 24 }]}>{this.state.bloodtype}</Text>
               <Text style={[styles.text, styles.subText]}>Blood Type</Text>
             </View>
           </View>
