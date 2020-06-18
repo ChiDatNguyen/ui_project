@@ -41,7 +41,7 @@ class App extends React.Component {
         >
           <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
           <Stack.Screen name="register" component={RegisterScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="home" component={Home} options={{ title: 'CareApp' }} />
+          <Stack.Screen name="home" component={Home} options={{ title: 'CareApp', headerShown:false }} />
         </Stack.Navigator>
       </NavigationContainer>
     );
