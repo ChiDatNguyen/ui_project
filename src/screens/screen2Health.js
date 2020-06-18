@@ -1,55 +1,31 @@
 import React, {Component, Fragment} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Navigator,
-  TouchableOpacity,
+import { Platform, ScrollView, Text, View, Image, AppRegistry, Button, Navigator, StyleSheet, TouchableOpacity } from 'react-native';
+import { CheckBox, Input } from 'react-native-elements';
+import RNPickerSelect from 'react-native-picker-select';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Screen2 } from './screen2Health';
-import PropTypes from 'prop-types';
-
-const HealthyStack = createStackNavigator();
-export class HealthScreen extends React.Component {
-    render() {
-        return (
-            <HealthyStack.Navigator>
-                <HealthyStack.Screen name="s1" component={Screen1} options={{ headerShown: false }} />
-                <HealthyStack.Screen name="s2" component={Screen2} options={{ headerShown: false }} />
-            </HealthyStack.Navigator>
-        );
-    }
-}
-class Screen1 extends Component{
-
+export class Screen2 extends React.Component {
   render(){
     return(
-<Fragment>
-      <ScrollView>
+      <Fragment>
 
-        <View style={{justifyContent: 'center',flexDirection: 'row', backgroundColor: 'gray',width: 90,alignItems: 'center', marginTop:10, marginLeft:290, height: 30, borderRadius:20}}>
-          <View >
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('s2')}>
+        <View style={{justifyContent: 'center',flexDirection: 'row', backgroundColor: 'gray',alignItems: 'center', marginLeft: 290, marginTop:10, width:90, height: 30, borderRadius:20}}>
+
+          <View style = {{width:60, height:30, justifyContent: 'center', alignItems: 'center',}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('s1')}>
+            <Text> Spec
+            </Text>
+          </TouchableOpacity>
+          </View>
+          <View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('s1')}>
             <Image
-              source={require('../../images/healthimage/eva.png')}
+              source={require('../../images/healthimage/charticon.png')}
               style={{width:30, height:30}}
-              />
+            />
           </TouchableOpacity>
           </View>
-
-          <View style = {{ width:60, height:30, justifyContent: 'center',borderRadius:10, alignItems: 'center',}}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('s2')}>
-            <Text>Evaluate</Text>
-          </TouchableOpacity>
-          </View>
-
         </View>
-
         <View style={styles.container}>
           {/* View container */}
 
@@ -62,11 +38,9 @@ class Screen1 extends Component{
               Heart rate
               </Text>
               <Text style={styles.text2}>
-              59
+              LOW
               </Text>
-              <Text style={styles.text3}>
-              bpm
-              </Text>
+
             </View>
 
             <View style={styles.miniup}>
@@ -83,11 +57,9 @@ class Screen1 extends Component{
               Blood pressure
               </Text>
               <Text style={styles.text2}>
-              120/81
+              GOOD
               </Text>
-              <Text style={styles.text3}>
-              mmHG
-              </Text>
+
             </View>
           </View>
           <View style={styles.down}>
@@ -109,11 +81,9 @@ class Screen1 extends Component{
                   current
                   </Text>
                   <Text style={styles.text2}>
-                  1025
+                  GOOD
                   </Text>
-                  <Text style={styles.text3}>
-                  steps
-                  </Text>
+
                 </View>
               </View>
 
@@ -130,11 +100,9 @@ class Screen1 extends Component{
                   distance
                   </Text>
                   <Text style={styles.text2}>
-                  1.2
+                  NORMAL
                   </Text>
-                  <Text style={styles.text3}>
-                  km
-                  </Text>
+
                 </View>
               </View>
             </View>
@@ -155,11 +123,9 @@ class Screen1 extends Component{
                   resting energy
                   </Text>
                   <Text style={styles.text2}>
-                  965
+                  PERFECT
                   </Text>
-                  <Text style={styles.text3}>
-                  kcal
-                  </Text>
+
                 </View>
               </View>
 
@@ -176,31 +142,19 @@ class Screen1 extends Component{
                   sleep time
                   </Text>
                   <Text style={styles.text2}>
-                  6.5
+                  FEW
                   </Text>
-                  <Text style={styles.text3}>
-                  hours
-                  </Text>
+
               </View>
             </View>
             </View>
           </View>
         </View>
-        <View style={{flex:2,justifyContent: 'center',
-        alignItems: 'center',height: 500}}>
-        <Text style={{fontSize:30, color:'rgb(169, 50, 38)', fontWeight:'bold'}}>
-        Chart
-        </Text>
-          <Image
-          source={require('../../images/healthimage/line_chart.png')}
-          style= {styles.chart}
-          />
-        </View>
-      </ScrollView>
-      </Fragment>
+          </Fragment>
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   container:{
@@ -272,16 +226,11 @@ const styles = StyleSheet.create({
   text2:{
     marginTop: 10,
     textAlign: 'center',
-    fontSize:30,
+    fontSize:20,
     fontWeight: 'bold',
     color:'rgb(21, 67, 96)'
   },
-  text3:{
-    fontSize:15,
-    marginTop: 10,
-    textAlign: 'center',
-    color: 'rgb(236, 112, 99)'
-  },
+  
   chart:{
     marginLeft:30,
     marginRight:30,
