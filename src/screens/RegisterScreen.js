@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {useState} from 'react';
-import { StyleSheet, View, Text, TextInput, ImageBackground, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ImageBackground, Image, TouchableOpacity, Dimensions, Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Component } from 'react';
+import { firebaseApp } from '../../Component/FirebaseConfig.js';
 
 import bgImage from '../../images/Login_Register/wallpaper.png';
 import Logo from '../../images/Login_Register/logo.png';
@@ -12,15 +13,64 @@ import IconPass from '../../images/Login_Register/password.png';
 import IconMail from '../../images/Login_Register/email.png';
 
 const { width: WIDTH } = Dimensions.get('window')
-export function RegisterScreen({navigation}) {
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [user, setUser] = useState('');
-    submitRegister = (email,pass) => {
-      // auth().createUserWithEmailAndPassword(email,pass).catch(function(error) {});
-      alert(email);
-      navigation.navigate('login');
+export class RegisterScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: '',
+      password: ''
     }
+    
+  }
+  Regis(){
+    firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+    .then(()=>{
+      Alert.alert(
+        'Alert Title',
+        'Register successful: '+this.state.email,
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          { text: 'OK', onPress: () => this.props.navigation.navigate('login') }
+        ],
+        { cancelable: false }
+      )
+      
+      firebaseApp.database().ref('user/'+firebaseApp.auth().currentUser.uid).set({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password,
+        age: '20',
+        weight: '60 kg',
+        height: '170 cm',
+        bloodType: 'O'
+      })
+    })
+    .catch(function (error) {
+      // Alert.alert(
+      //   'Alert Title',
+      //   'Register failed!',
+      //   'Password must be at least 6 characters'
+      //   [
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.log('Cancel Pressed'),
+      //       style: 'cancel'
+      //     },
+      //     { text: 'OK', onPress: () => console.log('OK Pressed') }
+      //   ],
+      //   { cancelable: false }
+      // )
+    });
+    
+  }
+  
+  render() {
+    
     return (
       <ImageBackground source={bgImage} style={styles.backgroundContainer}>
           <View style={styles.logoContainer}>
@@ -29,14 +79,26 @@ export function RegisterScreen({navigation}) {
           </View>
           
           <View style={styles.inputContainer}>
+            <Image source={IconMail} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIconEmail} />
+            <TextInput
+              style={styles.input}
+              placeholder={'Email'}
+              placeholderTextColor={'rgba(255,255,255,0.7)'}
+              underlineColorAndroid='transparent'
+              onChangeText={(email) => this.setState({ email })}
+              value={this.state.email}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
             <Image source={IconUser} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} /> 
             <TextInput
               style={styles.input}
               placeholder={'Username'}
               placeholderTextColor={'rgba(255,255,255,0.7)'}
               underlineColorAndroid='transparent'
-              onChangeText={email => setEmail(email)}
-              defaultValue={email}
+              onChangeText={(username) => this.setState({ username })}
+              value={this.state.username}
             />
           </View>
           
@@ -48,34 +110,22 @@ export function RegisterScreen({navigation}) {
               secureTextEntry={true}
               placeholderTextColor={'rgba(255,255,255,0.7)'}
               underlineColorAndroid='transparent'
-              onChangeText={pass => setPass(pass)}
-              defaultValue={pass}
+              onChangeText={(password) => this.setState({ password })}
+              value={this.state.password}
             />
           </View>
 
-          <View style={styles.inputContainer}>
-          <Image source={IconMail} size={28} color={'rgba(255,255,255,0.7)'} style={styles.inputIconEmail} />
-            <TextInput
-              style={styles.input}
-              placeholder={'Email'}
-              placeholderTextColor={'rgba(255,255,255,0.7)'}
-              underlineColorAndroid='transparent'
-              onChangeText={user => setUser(user)}
-              defaultValue={user}
-            />
-          </View>
-
-        
         <View style={styles.inputContainer} style={{ flexDirection: 'row' }}>
-          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('home')}>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => {this.Regis()}}>
             <Text style={styles.text}>Register</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.btnLogin} onPress={() => navigation.navigate('login')}>
+          <TouchableOpacity style={styles.btnLogin} onPress={() => this.props.navigation.navigate('login')}>
             <Text style={styles.text}>Cancel</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
     );
+  }
 }
 const styles = StyleSheet.create({
   backgroundContainer: {
