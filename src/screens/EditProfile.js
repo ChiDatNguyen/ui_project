@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity, Alert,TextInput } from "react-native";
+import { firebaseApp } from "../../Component/FirebaseConfig";
 const { width: WIDTH} = Dimensions.get('window')
 
 export class EditProfile extends React.Component {
@@ -15,7 +16,19 @@ export class EditProfile extends React.Component {
       }
      
     }
-    
+    Update(){
+      firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).update(
+        {
+          username: this.state.username,
+          age: this.state.age,
+          bloodType: this.state.bloodtype,
+          height: this.state.height,
+          weight: this.state.weight,
+          description: this.state.description,
+        }
+      )
+      .then( () => { this.props.navigation.navigate('profile') })
+    }
     
     render(){
       return (
@@ -96,7 +109,7 @@ export class EditProfile extends React.Component {
 
           
 
-          <TouchableOpacity style={styles.btnLogout} onPress={() => { this.props.navigation.navigate('profile') }}>
+          <TouchableOpacity style={styles.btnLogout} onPress={() => { this.Update() }}>
             <Text style={styles.textButton}>Confirm</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btnLogout1}>

@@ -47,7 +47,8 @@ export class RegisterScreen extends Component {
         age: '20',
         weight: '60 kg',
         height: '170 cm',
-        bloodType: 'O'
+        bloodType: 'O',
+        description: 'please update your profile'
       })
     })
     .catch(function (error) {

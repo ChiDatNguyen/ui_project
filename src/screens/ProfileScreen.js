@@ -27,14 +27,16 @@ export class MainProfile extends React.Component {
       age:'',
       bloodtype:'',
       height:'',
-      weight:''
+      weight:'',
+      description:'',
     }
-    firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).once('value').then(snapshot => {this.setState({ age:snapshot.val().age,
+    firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).on('value',snapshot => {this.setState({ age:snapshot.val().age,
       weight:snapshot.val().weight,
       height:snapshot.val().height,
       bloodtype:snapshot.val().bloodType,
       email:snapshot.val().email,
-      username:snapshot.val().username})});
+      username:snapshot.val().username,
+      description:snapshot.val().description})});
   }
   Logout() {
     firebaseApp.auth().signOut()
@@ -82,7 +84,7 @@ export class MainProfile extends React.Component {
               {this.state.username}
             </Text>
             <Text style={[styles.text, {color: '#AEB5BC', fontSize: 14}]}>
-              CEO of Stark Industries
+              {this.state.description}
             </Text>
           </View>
 
