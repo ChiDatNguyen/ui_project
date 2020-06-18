@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity, Alert,TextInput } from "react-native";
-//import IconUser from '../../images/profile/user.png';
+import { firebaseApp } from "../../Component/FirebaseConfig";
 const { width: WIDTH} = Dimensions.get('window')
 
 export class EditProfile extends React.Component {
@@ -8,7 +8,7 @@ export class EditProfile extends React.Component {
       super(props);
       this.state = {
         username:'',
-        email:'',
+        description:'',
         age:'',
         bloodtype:'',
         height:'',
@@ -16,74 +16,23 @@ export class EditProfile extends React.Component {
       }
      
     }
-    
+    Update(){
+      firebaseApp.database().ref('/user/'+firebaseApp.auth().currentUser.uid).update(
+        {
+          username: this.state.username,
+          age: this.state.age,
+          bloodType: this.state.bloodtype,
+          height: this.state.height,
+          weight: this.state.weight,
+          description: this.state.description,
+        }
+      )
+      .then( () => { this.props.navigation.navigate('profile') })
+    }
     
     render(){
       return (
-        // <SafeAreaView style={styles.container}>
-        //   <ScrollView showsVerticalScrollIndicator={false}>
-  
-        //     <View style={{alignSelf: 'center'}}>
-        //       <View style={styles.profileImage}>
-        //         <Image
-        //           source={require('../../images/profile/profile-pic.jpg')}
-        //           style={styles.image}
-        //           resizeMode="center"
-        //         />
-        //       </View>
-  
-        //       <View style={styles.active} />
-          
-        //     </View>
-  
-        //     <View>
-        //         <Image source={IconUser}  color={'rgba(255,255,255,0.7)'} style={styles.inputIcon} /> 
-        //         <TextInput
-        //             style={styles.input}
-        //             placeholder={'Username'}
-        //             placeholderTextColor={'rgba(255,255,255,0.7)'}
-        //             underlineColorAndroid='transparent'
-        //         />
-        //     </View>
-
-            
-  
-        //     <View style={{ flexDirection: 'row' }}>
-        //           <TextInput
-        //               style={styles.inputSmall}
-        //               placeholder={'Weight'}
-        //               placeholderTextColor={'rgba(255,255,255,0.7)'}
-        //               underlineColorAndroid='transparent'
-        //           />
-        //           <TextInput
-        //               style={styles.inputSmall}
-        //               placeholder={'Height'}
-        //               placeholderTextColor={'rgba(255,255,255,0.7)'}
-        //               underlineColorAndroid='transparent'
-        //           />
-        //     </View>
-
-        //     <View style={{ flexDirection: 'row' }}>
-        //           <TextInput
-        //               style={styles.inputSmall1}
-        //               placeholder={'Age'}
-        //               placeholderTextColor={'rgba(255,255,255,0.7)'}
-        //               underlineColorAndroid='transparent'
-        //           />
-        //           <TextInput
-        //               style={styles.inputSmall2}
-        //               placeholder={'Blood Type'}
-        //               placeholderTextColor={'rgba(255,255,255,0.7)'}
-        //               underlineColorAndroid='transparent'
-        //           />
-        //     </View>
-
-        //     <TouchableOpacity style={styles.btnLogout} >
-        //       <Text style={styles.textButton}>Logout</Text>
-        //     </TouchableOpacity>
-
-        //   </ScrollView>
-        // </SafeAreaView>
+        
         <SafeAreaView style={styles.container}>
         <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -95,62 +44,72 @@ export class EditProfile extends React.Component {
                 resizeMode="center"
               />
             </View>
-
             <View style={styles.active} />
-        
           </View>
 
           <View style={styles.infoContainer}>
-                 <TextInput
-                    style={styles.input}
-                    placeholder={'Username'}
-                    placeholderTextColor={'rgba(255,255,255,0.7)'}
-                    underlineColorAndroid='transparent'
-                />
+            <TextInput
+              style={styles.input}
+              placeholder={'Username'}
+              placeholderTextColor={'rgba(255,255,255,0.7)'}
+              underlineColorAndroid='transparent'
+              onChangeText={(username)=> this.setState({username})}
+              value={this.state.username}
+          />
           </View>
 
           <View style={styles.infoContainer}>
-                 <TextInput
-                    style={styles.input}
-                    placeholder={'Description'}
-                    placeholderTextColor={'rgba(255,255,255,0.7)'}
-                    underlineColorAndroid='transparent'
-                />
+            <TextInput
+              style={styles.input}
+              placeholder={'Description'}
+              placeholderTextColor={'rgba(255,255,255,0.7)'}
+              underlineColorAndroid='transparent'
+              onChangeText={(description)=> this.setState({description})}
+              value={this.state.description}
+            />
           </View>
 
           <View style={styles.infoContainer} style={{ flexDirection: 'row' }}>
           <TextInput
-                      style={styles.inputSmall}
-                      placeholder={'Weight'}
-                      placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      underlineColorAndroid='transparent'
-                  />
-                  <TextInput
-                      style={styles.inputSmall}
-                      placeholder={'Height'}
-                      placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      underlineColorAndroid='transparent'
-                  />
+            style={styles.inputSmall}
+            placeholder={'Weight'}
+            placeholderTextColor={'rgba(255,255,255,0.7)'}
+            underlineColorAndroid='transparent'
+            onChangeText={(weight)=> this.setState({weight})}
+            value={this.state.weight}
+          />
+          <TextInput
+            style={styles.inputSmall}
+            placeholder={'Height'}
+            placeholderTextColor={'rgba(255,255,255,0.7)'}
+            underlineColorAndroid='transparent'
+            onChangeText={(height)=> this.setState({height})}
+            value={this.state.height}
+          />
           </View>
 
           <View style={styles.infoContainer} style={{ flexDirection: 'row' }}>
           <TextInput
-                      style={styles.inputSmall1}
-                      placeholder={'Age'}
-                      placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      underlineColorAndroid='transparent'
-                  />
-                  <TextInput
-                      style={styles.inputSmall2}
-                      placeholder={'Blood Type'}
-                      placeholderTextColor={'rgba(255,255,255,0.7)'}
-                      underlineColorAndroid='transparent'
-                  />
+            style={styles.inputSmall1}
+            placeholder={'Age'}
+            placeholderTextColor={'rgba(255,255,255,0.7)'}
+            underlineColorAndroid='transparent'
+            onChangeText={(age)=> this.setState({age})}
+            value={this.state.age}
+          />
+          <TextInput
+              style={styles.inputSmall2}
+              placeholder={'Blood Type'}
+              placeholderTextColor={'rgba(255,255,255,0.7)'}
+              underlineColorAndroid='transparent'
+              onChangeText={(bloodtype)=> this.setState({bloodtype})}
+              value={this.state.bloodtype}
+          />
           </View>
 
           
 
-          <TouchableOpacity style={styles.btnLogout}>
+          <TouchableOpacity style={styles.btnLogout} onPress={() => { this.Update() }}>
             <Text style={styles.textButton}>Confirm</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.btnLogout1}>
