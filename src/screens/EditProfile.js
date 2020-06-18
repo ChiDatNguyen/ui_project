@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity, Alert,TextInput } from "react-native";
-import IconUser from '../../images/profile/user.png';
+//import IconUser from '../../images/profile/user.png';
 const { width: WIDTH} = Dimensions.get('window')
 
 export class EditProfile extends React.Component {
