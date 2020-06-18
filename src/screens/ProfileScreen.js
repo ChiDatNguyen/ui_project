@@ -1,9 +1,24 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity, Alert } from "react-native";
 import { firebaseApp } from '../../Component/FirebaseConfig.js';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { EditProfile } from '../screens/EditProfile';
 
 const { width: WIDTH} = Dimensions.get('window')
+const ProfileStack = createStackNavigator();
 export class ProfileScreen extends React.Component {
+    render() {
+        return (
+            <ProfileStack.Navigator>
+                <ProfileStack.Screen name="profile" component={MainProfile} options={{ headerShown: false }} />
+                <ProfileStack.Screen name="edit" component={EditProfile} options={{ headerShown: false }} />
+            </ProfileStack.Navigator>
+        );
+    }
+}
+
+export class MainProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -201,6 +216,9 @@ export class ProfileScreen extends React.Component {
             </View>
           </View>
 
+          <TouchableOpacity style={styles.btnLogout} onPress={() => { this.props.navigation.navigate('edit') }}>
+            <Text style={styles.textButton}>Edit Profile</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.btnLogout} onPress={() => { this.Logout() }}>
             <Text style={styles.textButton}>Logout</Text>
           </TouchableOpacity>
