@@ -39,12 +39,11 @@ export class EditProfile extends React.Component {
           <View style={{alignSelf: 'center'}}>
             <View style={styles.profileImage}>
               <Image
-                source={require('../../images/profile/profile-pic.jpg')}
+                source={require('../../images/profile/user.png')}
                 style={styles.image}
                 resizeMode="center"
               />
             </View>
-            <View style={styles.active} />
           </View>
 
           <View style={styles.infoContainer}>
@@ -71,7 +70,7 @@ export class EditProfile extends React.Component {
 
           <View style={styles.infoContainer} style={{ flexDirection: 'row' }}>
           <TextInput
-            style={styles.inputSmall}
+            style={styles.inputSmall1}
             placeholder={'Weight'}
             placeholderTextColor={'rgba(255,255,255,0.7)'}
             underlineColorAndroid='transparent'
@@ -79,7 +78,7 @@ export class EditProfile extends React.Component {
             value={this.state.weight}
           />
           <TextInput
-            style={styles.inputSmall}
+            style={styles.inputSmall2}
             placeholder={'Height'}
             placeholderTextColor={'rgba(255,255,255,0.7)'}
             underlineColorAndroid='transparent'
@@ -90,7 +89,7 @@ export class EditProfile extends React.Component {
 
           <View style={styles.infoContainer} style={{ flexDirection: 'row' }}>
           <TextInput
-            style={styles.inputSmall1}
+            style={styles.inputSmall3}
             placeholder={'Age'}
             placeholderTextColor={'rgba(255,255,255,0.7)'}
             underlineColorAndroid='transparent'
@@ -98,7 +97,7 @@ export class EditProfile extends React.Component {
             value={this.state.age}
           />
           <TextInput
-              style={styles.inputSmall2}
+              style={styles.inputSmall4}
               placeholder={'Blood Type'}
               placeholderTextColor={'rgba(255,255,255,0.7)'}
               underlineColorAndroid='transparent'
@@ -138,38 +137,49 @@ const styles = StyleSheet.create({
         color: 'rgba(255,255,255,0.7)',
         marginHorizontal: 25
     },
-    inputSmall:{
-      top: 15,  
-      width: WIDTH - 290,
-      height: 45,
-      left: 50,
-      borderRadius: 25,
-      fontSize: 16,
-      paddingLeft: 20,
-      backgroundColor: '#432577',
-      color: 'rgba(255,255,255,0.7)',
-      marginHorizontal: 25
-    },
     inputSmall1:{
-      top: 25,  
-      width: WIDTH - 290,
+      top: 15,  
+      width: WIDTH - 270,
       height: 45,
       left: 50,
       borderRadius: 25,
       fontSize: 16,
-      paddingLeft: 20,
+      paddingLeft: 30,
       backgroundColor: '#432577',
       color: 'rgba(255,255,255,0.7)',
       marginHorizontal: 25
     },
     inputSmall2:{
+      top: 15,  
+      width: WIDTH - 265,
+      height: 45,
+      left: 0,
+      borderRadius: 25,
+      fontSize: 16,
+      paddingLeft: 30,
+      backgroundColor: '#432577',
+      color: 'rgba(255,255,255,0.7)',
+      marginHorizontal: 25
+    },
+    inputSmall3:{
       top: 25,  
-      width: WIDTH - 290,
+      width: WIDTH - 270,
       height: 45,
       left: 50,
       borderRadius: 25,
       fontSize: 16,
-      paddingLeft: 10,
+      paddingLeft: 30,
+      backgroundColor: '#432577',
+      color: 'rgba(255,255,255,0.7)',
+      marginHorizontal: 25
+    },
+    inputSmall4:{
+      top: 25,  
+      width: WIDTH - 265,
+      height: 45,
+      borderRadius: 25,
+      fontSize: 16,
+      paddingLeft: 20,
       backgroundColor: '#432577',
       color: 'rgba(255,255,255,0.7)',
       marginHorizontal: 25
